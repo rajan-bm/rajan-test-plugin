@@ -1,0 +1,1 @@
+<h1>Custom Taxonomy cat cat cat</h1>

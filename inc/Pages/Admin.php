@@ -1,26 +1,74 @@
 <?php
+
 /**
  * @package Rajan Test Plugin
  */
 
 namespace Inc\Pages;
 
-use \Inc\Base\BaseController;
+use Inc\Api\SettingsApi;
+use Inc\Base\BaseController;
+use Inc\Api\Callbacks\AdminCallbacks;
 
 class Admin extends BaseController
 {
+    public $settings;
+    public $pages = [];
+    public $subPages = [];
+    public $callbacks;
+
     public function register()
     {
-        add_action('admin_menu', array($this, 'admin_menu_pages'));
+        $this->settings = new SettingsApi();
+        $this->callbacks = new AdminCallbacks();
+        $this->setPages();
+        $this->setSubPages();
+
+        $this->settings->Addpages($this->pages)->withSubPage('Dashboard')->addSubPages($this->subPages)->register();
     }
 
-    public function admin_menu_pages()
+    public function setPages()
     {
-        add_menu_page('Rajan Test Plugin', 'Rajan Test', 'manage_options', 'rajan_test', array($this, 'admin_index'), 'dashicons-store', 110);
-    }    
+        $this->pages = [
+            [
+                'page_title' => 'Test Plugin',
+                'menu_title' => 'Test Plugin',
+                'capability' => 'manage_options',
+                'menu_slug' => 'test_plugin',
+                'callback' => array($this->callbacks, 'adminDashboard'),
+                'icon_url' => 'dashicons-store',
+                'position' => 110,
+            ],
+        ];
+    }
 
-    public function admin_index()
+    public function setSubPages()
     {
-        require_once $this->plugin_path . 'templates/admin.php';
+        $this->subPages = [
+            [
+                'parent_slug' => 'test_plugin',
+                'page_title' => 'Custom Post Type',
+                'menu_title' => 'CPT',
+                'capability' => 'manage_options',
+                'menu_slug' => 'test_plugin_cpt',
+                'callback' => array($this->callbacks, 'cptDashboard'),
+            ],
+            [
+                'parent_slug' => 'test_plugin',
+                'page_title' => 'Custom Taxonomy',
+                'menu_title' => 'Taxonomy',
+                'capability' => 'manage_options',
+                'menu_slug' => 'test_plugin_tax',
+                'callback' => array($this->callbacks, 'taxDashboard'),
+            ],
+            [
+                'parent_slug' => 'test_plugin',
+                'page_title' => 'Custom Widgets',
+                'menu_title' => 'Widgets',
+                'capability' => 'manage_options',
+                'menu_slug' => 'test_plugin_widgets',
+                'callback' => array($this->callbacks, 'widgetDashboard'),
+            ],
+        ];
     }
 }
