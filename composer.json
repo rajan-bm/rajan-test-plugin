@@ -1,0 +1,17 @@
+{
+    "name": "razan/rajan-test-plugin",
+    "description": "Awesome starter plugin",
+    "type": "wordpress-plugin",
+    "license": "GPL-2.0-or-later",
+    "authors": [
+        {
+            "name": "rajan BM",
+            "email": "orajanbm@gamil.com"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {},
+    "autoload": {
+        "psr-4": {"Inc\\": "./inc/"}
+    }
+}
