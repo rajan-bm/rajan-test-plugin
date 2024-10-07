@@ -1,0 +1,46 @@
+# Dependencies
+/node_modules
+/vendor
+package-lock.json
+composer.lock
+
+# Source files
+/src
+
+# Development
+.env
+.env.*
+!.env.example
+
+# Build directories
+/dist
+/build
+
+# Operating System Files
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# IDE/Editor Folders
+.idea/
+.vscode/
+*.sublime-workspace
+*.sublime-project
+
+# WordPress specific
+*.log
+/wp-config.php
+/wp-content/advanced-cache.php
+/wp-content/backup-db/
+/wp-content/backups/
+/wp-content/blogs.dir/
+/wp-content/cache/
+/wp-content/upgrade/
+/wp-content/uploads/
+/wp-content/wp-cache-config.php
+
+# Misc
+*.sql
+*.zip
+*.tar.gz
+.phpunit.result.cache

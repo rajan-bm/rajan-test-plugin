@@ -20,7 +20,7 @@ class Enqueue extends BaseController
     function enqueue()
     {
         // enqueue our styles ans scripts here
-        wp_enqueue_style('rajan-test-plugin-style', $this -> plugin_url . 'assets/styles.css' );
-        wp_enqueue_script('rajan-test-plugin-script', $this -> plugin_url . 'assets/main.js' );
+        wp_enqueue_style('rajan-test-plugin-style', $this -> plugin_url . 'assets/css/mystyle.css' );
+        wp_enqueue_script('rajan-test-plugin-script', $this -> plugin_url . 'assets/js/myscript.js' );
     }
 }

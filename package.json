@@ -1,0 +1,60 @@
+{
+	"name": "rajan-test-plugin",
+	"version": "1.0.0",
+	"description": "Awesome starter plugin example",
+	"author": "Rajan",
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/rajan-bm/rajan-test-plugin.git"
+	},
+	"keywords": [
+		"wordpress",
+		"plugin",
+		"PHP",
+		"composer",
+		"gulp",
+		"es6",
+		"scss"
+	],
+	"devDependencies": {
+		"@babel/core": "^7.21.0",
+		"@babel/preset-env": "^7.21.0",
+		"babelify": "^10.0.0",
+		"browser-sync": "^2.27.7",
+		"browserify": "^17.0.0",
+		"browserify-shim": "^3.8.15",
+		"gulp": "^4.0.2",
+		"gulp-autoprefixer": "^8.0.0",
+		"gulp-concat": "^2.6.1",
+		"gulp-if": "^3.0.0",
+		"gulp-notify": "^4.0.0",
+		"gulp-plumber": "^1.2.0",
+		"gulp-rename": "^2.0.0",
+		"gulp-dart-sass": "^1.0.0",
+		"gulp-sourcemaps": "^3.0.0",
+		"gulp-uglify": "^3.0.0",
+		"vinyl-buffer": "^1.0.1",
+		"vinyl-source-stream": "^2.0.0"
+	},
+	"babel": {
+		"presets": [
+			"@babel/preset-env"
+		]
+	},
+	"browserify": {
+		"transform": [
+			"browserify-shim"
+		]
+	},
+	"browser": {
+		"jquery": "./node_modules/jquery/dist/jquery.js"
+	},
+	"browserify-shim": {
+		"jquery": "$"
+	},
+	"scripts": {
+		"dev": "gulp",
+		"build": "gulp build"
+	},
+	"license": "GPL-3.0"
+}
