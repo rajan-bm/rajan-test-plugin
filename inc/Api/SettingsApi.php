@@ -5,8 +5,9 @@
  */
 
 namespace Inc\Api;
+use Inc\Base\BaseController;
 
-class SettingsApi
+class SettingsAPi extends BaseController
 {
     public $admin_pages = array();
     public $admin_subpages = array();

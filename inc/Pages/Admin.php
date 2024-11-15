@@ -9,18 +9,21 @@ namespace Inc\Pages;
 use Inc\Api\SettingsApi;
 use Inc\Base\BaseController;
 use Inc\Api\Callbacks\AdminCallbacks;
+// use Inc\Api\Callbacks\ManagerCallbacks;
 
 class Admin extends BaseController
 {
     public $settings;
+    public $callbacks;
     public $pages = [];
     public $subPages = [];
-    public $callbacks;
+    public $callbacks_mngr;
 
     public function register()
     {
         $this->settings = new SettingsApi();
         $this->callbacks = new AdminCallbacks();
+        // $this->callbacks_mngr = new ManagerCallbacks();
         $this->setPages();
         $this->setSubPages();
         $this->setSettings();
@@ -79,17 +82,51 @@ class Admin extends BaseController
     {
         $args = [
             [
-                'option_group' => 'test_option_group',
-                'option_name' => 'text_example',
-                'callback' => array($this->callbacks, 'testOptionGroup'),
+                'option_group' => 'test_plguin_settings',
+                'option_name' => 'cpt_manager',
+                'callback' => array($this->callbacks, 'checkboxSanitize'),
             ],
             [
-                'option_group' => 'test_option_group',
-                'option_name' => 'first_name',
-                // 'callback' => array($this->callbacks, 'testOptionGroup'),
+                'option_group' => 'test_plguin_settings',
+                'option_name' => 'taxonomy_manager',
+                'callback' => array($this->callbacks, 'checkboxSanitize'),
+            ],
+            [
+                'option_group' => 'test_plguin_settings',
+                'option_name' => 'media_widget',
+                'callback' => array($this->callbacks, 'checkboxSanitize'),
+            ],
+            [
+                'option_group' => 'test_plguin_settings',
+                'option_name' => 'gallery_manager',
+                'callback' => array($this->callbacks, 'checkboxSanitize'),
+            ],
+            [
+                'option_group' => 'test_plguin_settings',
+                'option_name' => 'testomonial_manager',
+                'callback' => array($this->callbacks, 'checkboxSanitize'),
+            ],
+            [
+                'option_group' => 'test_plguin_settings',
+                'option_name' => 'templates_manager',
+                'callback' => array($this->callbacks, 'checkboxSanitize'),
+            ],
+            [
+                'option_group' => 'test_plguin_settings',
+                'option_name' => 'login_manager',
+                'callback' => array($this->callbacks, 'checkboxSanitize'),
+            ],
+            [
+                'option_group' => 'test_plguin_settings',
+                'option_name' => 'membership_manager',
+                'callback' => array($this->callbacks, 'checkboxSanitize'),
+            ],
+            [
+                'option_group' => 'test_plguin_settings',
+                'option_name' => 'chat_manager',
+                'callback' => array($this->callbacks, 'checkboxSanitize'),
             ],
         ];
-
         $this->settings->setSettings($args);
     }
 
@@ -98,12 +135,11 @@ class Admin extends BaseController
         $args = [
             [
                 'id' => 'test_admin_index',
-                'title' => 'Settings',
+                'title' => 'Settings Manager',
                 'callback' => array($this->callbacks, 'testAdminSection'),
                 'page' => 'test_plugin',
             ],
         ];
-
         $this->settings->setSections($args);
     }
 
@@ -133,7 +169,6 @@ class Admin extends BaseController
                 ],
             ],
         ];
-
         $this->settings->setFields($args);
     }
 }
